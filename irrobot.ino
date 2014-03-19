@@ -64,7 +64,7 @@ bool retToZero(){
   }
 
   float t_speed = tot_speed*EXP_DECAY;
-  tot_speed = floor(t_speed);
+  tot_speed = (tot_speed>0)? floor(t_speed): ceil(t_speed);
   sx_speed=dx_speed=tot_speed;
 
   sx->setSpeed(abs(tot_speed));
