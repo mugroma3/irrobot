@@ -35,7 +35,7 @@ void accell(int val){
   int temp_sp = tot_speed+val;
   int abs_sp = constrain(abs(temp_sp), 0, 255);
 
-  if(temp_sp >= 0 && tot_speed < 0){
+  if(temp_sp >= 0 && tot_speed <= 0){
     //changing direction. brake, reverse, accellerate
     sx->setSpeed(0); 
     dx->setSpeed(0);
