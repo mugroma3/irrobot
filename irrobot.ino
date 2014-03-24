@@ -37,11 +37,11 @@ void accell(int val){
 
   if(temp_sp >= 0 && tot_speed < 0){
     //changing direction. brake, reverse, accellerate
-    while(!returnToZero());
+    while(!retToZero());
     //TODO: add delay?
   }else if(temp_sp <0 && tot_speed >= 0){
     //changing direction. brake, reverse, accellerate
-    while(!returnToZero());
+    while(!retToZero());
     //TODO: add delay?
     //as we are going back, we need to set the right direction
     sx->run(BACKWARD);
