@@ -73,7 +73,36 @@ bool retToZero(){
   return false;
 }
 
-void applyTorque(int val){
+//half_a è metà distanza fra le due ruote. l'unità di misurà è 
+#define HALF_A              
+
+//gira applicando una velocità angolare al vettore movimento tot_speed. valori positivi per girare a sinistra. angoli calcolati in gradi
+void turn(float angl_speed){
+  if(angl_speed==0) return;
+  
+  bool l_turn;
+  
+  if(!(l_turn= angl_speed > 0){
+    angl_speed=abs(angl_speed);
+  }
+  
+  float turn_r  = tot_speed / angl_speed;       //raggio della curva necessario per soddisfare la velocità angolare
+  float v_est = angl_speed*(turn_r + HALF_A);   //velocità non clampata della ruota esterna alla curva
+  
+  int v_est_clamp = constrain(v_est, 0, 255);
+  
+  int v_int = constrain(v_est_clamp*(1-HALF_A)/(turn_r + HALF_A), 0, 255);
+  
+  if(l_turn){
+    dx_speed=v_est_clamp;
+    sx_speed=v_int;
+  else{
+    sx_speed=v_est_clamp;
+    dx_speed=v_int;
+  }
+  
+  sx->setSpeed(sx_speed); 
+  dx->setSpeed(dx_speed);
 
 }
 
@@ -140,11 +169,11 @@ void loop() {
         status= (retToZero())? HOLD : RETURN_TO_ZERO;
         break;
       case TURN_RIGHT:
-        applyTorque(-DTQ);
+        turn(-5./OP_DELAY);
         status = RETURN_STRAIGHT;
         break;
       case TURN_LEFT:
-        applyTorque(DTQ);
+        turn(5./OP_DELAY);
         status = RETURN_STRAIGHT;
         break;
       case RETURN_STRAIGHT:
