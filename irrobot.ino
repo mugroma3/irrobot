@@ -74,7 +74,14 @@ bool retToZero(){
 }
 
 void applyTorque(int val){
-
+  if(val==DTQ){
+    sx->setSpeed(abs(tot_speed*0.2));
+    dx->setSpeed(abs(tot_speed*1.2));
+  }
+  else{
+    sx->setSpeed(abs(tot_speed*1.4));
+    dx->setSpeed(abs(tot_speed*0.2)); 
+  }
 }
 
 IRrecv irrecv(11);
